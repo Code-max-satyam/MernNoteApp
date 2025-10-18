@@ -34,7 +34,9 @@ Page	Preview
 
 
 🧩 Tech Stack
+
 Layer	Technology
+
 Frontend:	React.js (Vite), Axios, Tailwind CSS
 
 Backend:	Node.js, Express.js
