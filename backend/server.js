@@ -16,11 +16,6 @@ app.use("/api/users", authRoutes);
 app.use("/api/notes", notesRoutes);
 
 
-// Default route (for root URL)
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
