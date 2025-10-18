@@ -24,6 +24,10 @@ It includes protected routes, JSON Web Token authentication, and a responsive Re
 
 💾 MongoDB Atlas cloud database connection
 
+Live Demo
+
+https://mernnoteapp-vc6l.onrender.com/
+
 📸 Screenshots 
 Page	Preview
 <img width="1898" height="982" alt="Screenshot 2025-10-19 002436" src="https://github.com/user-attachments/assets/9c0d6d91-bac5-440b-a6b0-99e1e7e9454c" />
