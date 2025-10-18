@@ -36,15 +36,22 @@ Page	Preview
 🧩 Tech Stack
 Layer	Technology
 Frontend:	React.js (Vite), Axios, Tailwind CSS
+
 Backend:	Node.js, Express.js
+
 Database:	MongoDB (via Mongoose)
+
 Authentication:	JWT (JSON Web Token)
+
 Environment Management:	dotenv
+
 Version Control	Git & GitHub
+
 ⚙️ Installation and Setup
+
 1️⃣ Clone the repository
-git clone https://github.com/<your-username>/mern-notes-app.git
-cd mern-notes-app
+
+git clone https://github.com/Code-max-satyam/MernNoteApp.git
 
 2️⃣ Backend setup
 cd backend
