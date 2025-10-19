@@ -128,7 +128,7 @@ const Home = () => {
             onClick={() => navigate("/login")}
             className="fixed bottom-8 right-8 w-16 h-16 bg-gray-600 text-white text-3xl rounded-full shadow-lg hover:bg-gray-700 flex items-center justify-center"
           >
-            🔒
+            +
           </motion.button>
         )}
 
