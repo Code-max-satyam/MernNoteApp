@@ -19,12 +19,8 @@ const Home = () => {
     try {
       const searchParams = new URLSearchParams(location.search);
       const search = searchParams.get("search") || "";
-      const headers = isLoggedIn
-        ? { Authorization: `Bearer ${token}` }
-        : undefined;
-
+      const headers = isLoggedIn ? { Authorization: `Bearer ${token}` } : undefined;
       const { data } = await axios.get("/api/notes", { headers });
-
       const filteredNotes = search
         ? data.filter(
             (note) =>
@@ -71,22 +67,24 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-4 py-10 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-4 py-10 overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-10">
-          <h1 className="text-4xl font-bold text-blue-400">My Notes</h1>
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4 sm:gap-0">
+          <h1 className="text-3xl sm:text-4xl font-bold text-blue-400 text-center sm:text-left">
+            My Notes
+          </h1>
           {!isLoggedIn && (
-            <div className="space-x-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => navigate("/login")}
-                className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 transition-all"
+                className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 transition-all w-full sm:w-auto"
               >
                 Login
               </button>
               <button
                 onClick={() => navigate("/register")}
-                className="bg-green-600 px-4 py-2 rounded-md hover:bg-green-700 transition-all"
+                className="bg-green-600 px-4 py-2 rounded-md hover:bg-green-700 transition-all w-full sm:w-auto"
               >
                 Sign Up
               </button>
@@ -117,7 +115,7 @@ const Home = () => {
             whileHover={{ scale: 1.1, rotate: 10 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsModalOpen(true)}
-            className="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white text-4xl rounded-full shadow-lg hover:bg-blue-700 flex items-center justify-center"
+            className="fixed bottom-6 right-6 w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 text-white text-3xl sm:text-4xl rounded-full shadow-lg hover:bg-blue-700 flex items-center justify-center"
           >
             +
           </motion.button>
@@ -126,7 +124,7 @@ const Home = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => navigate("/login")}
-            className="fixed bottom-8 right-8 w-16 h-16 bg-gray-600 text-white text-3xl rounded-full shadow-lg hover:bg-gray-700 flex items-center justify-center"
+            className="fixed bottom-6 right-6 w-14 h-14 sm:w-16 sm:h-16 bg-gray-600 text-white text-3xl rounded-full shadow-lg hover:bg-gray-700 flex items-center justify-center"
           >
             +
           </motion.button>
@@ -136,49 +134,49 @@ const Home = () => {
         <AnimatePresence>
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
             {notes.map((note, i) => (
               <motion.div
                 key={note._id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-1"
+                className="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-1"
               >
-                <h3 className="text-2xl font-semibold mb-2 text-blue-300 tracking-wide capitalize">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-blue-300 tracking-wide capitalize">
                   {note.title}
                 </h3>
-                <p className="text-gray-300 mb-4 text-base leading-relaxed">
+                <p className="text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">
                   {note.description.length > 150
                     ? note.description.slice(0, 150) + "..."
                     : note.description}
                 </p>
-                <p className="text-xs text-gray-500 mb-4">
+                <p className="text-xs text-gray-400 mb-4 sm:text-sm">
                   {new Date(note.updatedAt).toLocaleString()}
                 </p>
 
                 {isLoggedIn ? (
-                  <div className="flex space-x-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       onClick={() => handleEdit(note)}
-                      className="flex-1 bg-yellow-500 text-black px-3 py-2 rounded-md font-medium hover:bg-yellow-400 transition-all"
+                      className="flex-1 bg-yellow-500 text-black px-2 py-1 sm:px-3 sm:py-2 rounded-md font-medium hover:bg-yellow-400 transition-all"
                     >
                       Edit
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       onClick={() => handleDelete(note._id)}
-                      className="flex-1 bg-red-600 text-white px-3 py-2 rounded-md font-medium hover:bg-red-700 transition-all"
+                      className="flex-1 bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-2 rounded-md font-medium hover:bg-red-700 transition-all"
                     >
                       Delete
                     </motion.button>
                   </div>
                 ) : (
-                  <p className="text-gray-400 text-sm italic text-center mt-3">
-                    Login to manage notes 🔒
+                  <p className="text-gray-400 text-xs sm:text-sm italic text-center mt-3">
+                    Login to manage notes 
                   </p>
                 )}
               </motion.div>
