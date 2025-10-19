@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
@@ -27,6 +27,7 @@ function App() {
     };
     fetchUser();
   }, []);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -34,19 +35,26 @@ function App() {
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen bg-green-500">
+    <div className="min-h-screen bg-gray-900">
       <Navbar user={user} setUser={setUser} />
       <Routes>
+        {/* Login & Register routes */}
         <Route
           path="/login"
-          element={user ? <Navigate to="/" /> : <Login setUser={setUser} />}
+          element={<Login setUser={setUser} />}
         />
         <Route
           path="/register"
-          element={user ? <Navigate to="/" /> : <Register setUser={setUser} />}
+          element={<Register setUser={setUser} />}
         />
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+
+        {/* Home route */}
+        <Route
+          path="/"
+          element={<Home user={user} />}
+        />
       </Routes>
     </div>
   );
